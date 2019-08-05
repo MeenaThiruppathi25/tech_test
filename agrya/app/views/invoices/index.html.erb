@@ -1,0 +1,39 @@
+<h1>Invoice List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reference</th>
+      <th>Invoice Date</th>
+      <th>Customer</th>
+      <th>Brand Manager</th>
+      <th>Narration</th>
+      <th>Amount</th>
+      <th>Total Collection</th>
+      <th>Balance Due</th>
+      <th>Button to add a collection</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each_with_index do |invoice| %>
+        <tr>
+          <td><%= link_to invoice['reference'] %></td>
+          <td><%= invoice['invoice_date'] %></td>
+          <td><%= invoice['customer_name'] %></td>
+          <td><%= invoice['brand_manager'] %></td>
+          <td><%= invoice['narration'] %></td>
+          <td><%= invoice['amount'] %></td>
+          <td>
+            <% @collection.each_with_index do |collection| %>
+              <% if invoice['reference'] == collection['reference'] %>
+                <%= collection['amount'] %>
+              <% end %>
+            <% end %>
+          </td>
+          <td></td>
+          <td><button>Add Collection</button></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
